@@ -1,6 +1,7 @@
 'use client'
 
 import { gql, useQuery } from '@apollo/client'
+import { User } from '@prisma/client'
 
 const QUERY = gql`
   query {
@@ -13,10 +14,8 @@ const QUERY = gql`
   }
 `
 
-type User = { id: number; name: string; email: string }
-
 export const UserData = () => {
-  const { data } = useQuery<{ user: User }>(QUERY)
+  const { data } = useQuery<{ user: Pick<User, 'id' | 'uid' | 'name' | 'email'> }>(QUERY)
 
   return (
     <div>

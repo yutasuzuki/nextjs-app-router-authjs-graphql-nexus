@@ -5,9 +5,6 @@ import {
   stringArg,
   nonNull,
   interfaceType,
-  intArg,
-  booleanArg,
-  enumType,
 } from 'nexus'
 
 const IUser = interfaceType({
@@ -40,9 +37,12 @@ export const UserQuery = extendType({
       async resolve(_root, _args, { prisma, session }) {
         try {
           if (!session?.user) return null
-          return prisma.user.findUnique({
+          const user = await prisma.user.findUnique({
             where: { id: session.user.id },
           })
+          if (!user) return null
+          const { cryptedPassword, ...result } = user
+          return result
         } catch (error) {
           console.log(error)
           return null
