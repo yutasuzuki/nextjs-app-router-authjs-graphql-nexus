@@ -34,7 +34,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-src/graphql/_generated
 .env
-
 package-lock.json
