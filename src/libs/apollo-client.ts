@@ -9,13 +9,13 @@ const httpLink = new HttpLink({
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
     graphQLErrors.map(({ message, locations, path }) => {
-      console.log(`[GraphQL エラー]: Message:`, message)
-      console.log(`[GraphQL エラー]: Location:`, locations)
-      console.log(`[GraphQL エラー]: Path:`, path)
+      console.log(`[GraphQL error]: Message:`, message)
+      console.log(`[GraphQL error]: Location:`, locations)
+      console.log(`[GraphQL error]: Path:`, path)
     })
   }
   if (networkError) {
-    console.log(`[ネットワークエラー]: ${networkError}`)
+    console.log(`[Network error]: ${networkError}`)
   }
 })
 
