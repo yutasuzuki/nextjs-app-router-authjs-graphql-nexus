@@ -1,0 +1,40 @@
+{
+  "name": "nextjs-app-router-authjs-graphql-nexus",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint . --fix",
+    "build:nexus-typegen": "npx ts-node --require dotenv/config -r tsconfig-paths/register --compiler-options '{\"module\":\"CommonJS\"}' --transpile-only ./src/graphql/schema.ts",
+    "reset": "npx prisma db push --accept-data-loss --schema=./prisma/reset.prisma; npx prisma db push --accept-data-loss;",
+    "format": "npx prisma format && prettier --write --ignore-path .prettierignore './**/*.{js,jsx,ts,tsx,json}'"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.8.0-alpha.13",
+    "@apollo/experimental-nextjs-app-support": "^0.1.0",
+    "@apollo/server": "^4.7.1",
+    "@as-integrations/next": "^1.3.0",
+    "@prisma/client": "^4.14.0",
+    "@types/bcrypt": "^5.0.0",
+    "@types/node": "20.1.1",
+    "@types/react": "18.2.6",
+    "@types/react-dom": "18.2.4",
+    "bcrypt": "^5.1.0",
+    "dotenv": "^16.0.3",
+    "eslint": "8.40.0",
+    "eslint-config-next": "^13.4.1",
+    "eslint-config-prettier": "^8.8.0",
+    "graphql": "^16.6.0",
+    "next": "13.4.1",
+    "next-auth": "^4.22.1",
+    "nexus": "^1.3.0",
+    "prettier": "^2.8.8",
+    "prisma": "^4.14.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.0.4"
+  }
+}
