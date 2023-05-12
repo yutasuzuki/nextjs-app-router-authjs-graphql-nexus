@@ -37,9 +37,12 @@ export const UserQuery = extendType({
   definition(t) {
     t.field('user', {
       type: UserObject,
-      async resolve(_root, _args, { prisma }) {
+      async resolve(_root, _args, { prisma, session }) {
         try {
-          return { id: 1, name: 'hoge', email: 'hoge@example.com' }
+          if (!session?.user) return null
+          return prisma.user.findUnique({
+            where: { id: session.user.id },
+          })
         } catch (error) {
           console.log(error)
           return null

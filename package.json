@@ -9,7 +9,7 @@
     "lint": "next lint . --fix",
     "build:nexus-typegen": "npx ts-node --require dotenv/config -r tsconfig-paths/register --compiler-options '{\"module\":\"CommonJS\"}' --transpile-only ./src/graphql/schema.ts",
     "reset": "npx prisma db push --accept-data-loss --schema=./prisma/reset.prisma; npx prisma db push --accept-data-loss;",
-    "format": "npx prisma format && prettier --write --ignore-path .prettierignore './**/*.{js,jsx,ts,tsx,json}'"
+    "format": "npm run lint && npx prisma format && prettier --write --ignore-path .prettierignore './**/*.{js,jsx,ts,tsx,json}'"
   },
   "dependencies": {
     "@apollo/client": "^3.8.0-alpha.13",

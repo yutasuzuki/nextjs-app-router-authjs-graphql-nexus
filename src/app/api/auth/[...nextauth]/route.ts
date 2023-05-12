@@ -1,6 +1,6 @@
 import { compare } from 'bcrypt'
 import NextAuth from 'next-auth'
-import type { NextAuthOptions } from 'next-auth'
+import type { NextAuthOptions, User } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { prisma } from '@/libs/prisma-client'
 
@@ -31,6 +31,27 @@ export const authOptions: NextAuthOptions = {
   ],
   pages: {
     signIn: '/auth/signin',
+  },
+  callbacks: {
+    session: async ({ session, token }) => {
+      if (!session?.user) return session
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          id: token.id,
+          uid: token.uid,
+        },
+      }
+    },
+    jwt: async ({ user, token }) => {
+      if (user) {
+        const u = user as User & { uid: string }
+        token.id = Number(u.id)
+        token.uid = u.uid
+      }
+      return token
+    },
   },
 }
 

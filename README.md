@@ -6,8 +6,8 @@ Next.js(App Router) boilerplate.
 
 * TypeScript
 * Next.js
-* Auth.js(NextAuth.js
-* Primsa
+* Auth.js(NextAuth.js)
+* Prisma
 * MySQL
 * GraphQL
 * Nexus
@@ -16,20 +16,31 @@ Next.js(App Router) boilerplate.
 
 ## Usage
 
-### Install 
+### install & setup
 
 ```
+// install
 npm i
-```
 
-### Set up
-
-```
-// prisma
+// set up prisma
 npx prisma db push
 
-// graphql schema
+// create graphql schema
 npm run build:nexus-typegen
 ```
 
+### start
 
+```
+npm run dev
+```
+
+### other command
+
+```
+// Database reset & Prisma rebuild
+npm run reset
+
+// lint & Prisma format & prettier
+npm run format
+```

@@ -1,9 +1,6 @@
 import { ApolloClient, ApolloLink, HttpLink, SuspenseCache } from '@apollo/client'
 import { onError } from '@apollo/client/link/error'
-import {
-  NextSSRInMemoryCache,
-  SSRMultipartLink,
-} from '@apollo/experimental-nextjs-app-support/ssr'
+import { NextSSRInMemoryCache, SSRMultipartLink } from '@apollo/experimental-nextjs-app-support/ssr'
 
 const httpLink = new HttpLink({
   uri: `${process.env.NEXT_PUBLIC_DOMAIN}/api/graphql`,

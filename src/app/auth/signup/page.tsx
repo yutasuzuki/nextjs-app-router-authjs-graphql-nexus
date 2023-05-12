@@ -1,22 +1,9 @@
 'use client'
 
 import { gql, useMutation } from '@apollo/client'
-import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr'
 import { useRouter } from 'next/navigation'
 import { signIn } from 'next-auth/react'
 import { ChangeEvent, useCallback, useState } from 'react'
-
-export const dynamic = 'force-dynamic'
-
-const QUERY = gql`
-  query {
-    user {
-      id
-      name
-      email
-    }
-  }
-`
 
 const SIGNUP_USER = gql`
   mutation SignupUser($name: String!, $email: String!, $password: String!) {
@@ -29,11 +16,8 @@ const SIGNUP_USER = gql`
   }
 `
 
-type User = { id: number; name: string; email: string }
-
 export default function Page() {
-  const [items, setItems] = useState<User>({ name: '', email: '', password: '' })
-  const { data, refetch } = useSuspenseQuery<{ user: User }>(QUERY)
+  const [items, setItems] = useState({ name: '', email: '', password: '' })
   const [signupUser, { loading: creating }] = useMutation(SIGNUP_USER)
   const router = useRouter()
 
