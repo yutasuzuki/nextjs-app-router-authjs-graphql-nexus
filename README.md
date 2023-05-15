@@ -6,7 +6,7 @@ Next.js(App Router) boilerplate.
 
 * TypeScript
 * Next.js
-* Auth.js(NextAuth.js)
+* NextAuth.js
 * Prisma
 * MySQL
 * GraphQL
