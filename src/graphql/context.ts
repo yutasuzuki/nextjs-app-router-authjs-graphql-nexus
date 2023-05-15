@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client'
-import { NextApiRequest, NextApiResponse } from 'next'
+import type { NextApiRequest, NextApiResponse } from 'next'
 import type { Session, User } from 'next-auth'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/app/api/auth/[...nextauth]/route'
