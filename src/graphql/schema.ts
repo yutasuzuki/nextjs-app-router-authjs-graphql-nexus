@@ -1,4 +1,4 @@
-import { join, resolve } from 'path'
+import { join } from 'path'
 import { makeSchema, fieldAuthorizePlugin } from 'nexus'
 import * as types from './schemas'
 

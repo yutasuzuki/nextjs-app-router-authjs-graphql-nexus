@@ -1,5 +1,3 @@
-import Image from 'next/image'
-import Link from 'next/link'
 import styles from './page.module.css'
 import { ClientSession } from '@/components/ClientSession/ClientSession'
 import { Header } from '@/components/Header/Header'

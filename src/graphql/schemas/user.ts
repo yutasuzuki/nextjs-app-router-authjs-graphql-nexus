@@ -29,7 +29,7 @@ export const UserQuery = extendType({
   definition(t) {
     t.field('user', {
       type: UserObject,
-      async resolve(_root, _args, { res, req, prisma, session }) {
+      async resolve(_root, _args, { session }) {
         try {
           const user = await getUser(session)
           return user
