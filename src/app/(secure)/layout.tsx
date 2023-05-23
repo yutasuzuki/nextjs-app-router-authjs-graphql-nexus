@@ -1,7 +1,3 @@
-import { redirect } from 'next/navigation'
-import { getServerSession } from 'next-auth'
-import { cloneElement } from 'react'
-import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import { DashboardHeader } from '@/components/DashboardHeader/DashboardHeader'
 
 export const metadata = {
