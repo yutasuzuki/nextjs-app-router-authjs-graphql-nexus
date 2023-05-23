@@ -1,11 +1,6 @@
 import bcrypt from 'bcrypt'
-import {
-  objectType,
-  extendType,
-  stringArg,
-  nonNull,
-  interfaceType,
-} from 'nexus'
+import { objectType, extendType, stringArg, nonNull, interfaceType } from 'nexus'
+import { getUser } from '@/graphql/utils'
 
 const IUser = interfaceType({
   name: 'IUser',
@@ -34,15 +29,10 @@ export const UserQuery = extendType({
   definition(t) {
     t.field('user', {
       type: UserObject,
-      async resolve(_root, _args, { prisma, session }) {
+      async resolve(_root, _args, { res, req, prisma, session }) {
         try {
-          if (!session?.user) return null
-          const user = await prisma.user.findUnique({
-            where: { id: session.user.id },
-          })
-          if (!user) return null
-          const { cryptedPassword, ...result } = user
-          return result
+          const user = await getUser(session)
+          return user
         } catch (error) {
           console.log(error)
           return null

@@ -5,6 +5,8 @@ import { schema } from '@/graphql/schema'
 
 const server = new ApolloServer({ schema })
 
-export default startServerAndCreateNextHandler(server, {
+const handler = startServerAndCreateNextHandler(server, {
   context,
 })
+
+export { handler as GET, handler as POST }

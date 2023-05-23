@@ -1,6 +1,8 @@
 import { ApolloClient, ApolloLink, HttpLink, SuspenseCache } from '@apollo/client'
+import { setContext } from '@apollo/client/link/context'
 import { onError } from '@apollo/client/link/error'
 import { NextSSRInMemoryCache, SSRMultipartLink } from '@apollo/experimental-nextjs-app-support/ssr'
+import { getSession } from 'next-auth/react'
 
 const httpLink = new HttpLink({
   uri: `${process.env.NEXT_PUBLIC_DOMAIN}/api/graphql`,
@@ -9,13 +11,13 @@ const httpLink = new HttpLink({
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
     graphQLErrors.map(({ message, locations, path }) => {
-      console.log(`[GraphQL error]: Message:`, message)
-      console.log(`[GraphQL error]: Location:`, locations)
-      console.log(`[GraphQL error]: Path:`, path)
+      console.log(`[GraphQL エラー]: Message:`, message)
+      console.log(`[GraphQL エラー]: Location:`, locations)
+      console.log(`[GraphQL エラー]: Path:`, path)
     })
   }
   if (networkError) {
-    console.log(`[Network error]: ${networkError}`)
+    console.log(`[ネットワークエラー]: ${networkError}`)
   }
 })
 
